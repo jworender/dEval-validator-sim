@@ -324,7 +324,7 @@ slider_noise.on_changed(update_noise_stddev)
 update_noise_stddev(SCORE_NOISE_STDDEV * 100) # Call once with initial percentage value
 
 # Restart Button
-ax_restart = plt.axes([0.71, 0.02, 0.08, 0.04]) # Position near bottom-right of sliders
+ax_restart = plt.axes([0.835, 0.02, 0.08, 0.04]) # Position near bottom-right of sliders
 button_restart = Button(ax_restart, 'Restart ↺', color='lightgreen', hovercolor='limegreen')
 
 def restart_simulation(event):
