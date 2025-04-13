@@ -69,17 +69,11 @@ This document outlines the mathematical framework describing the operation of th
             * Retrieve cross-validation scores $\{S_{j,k(t),m} | j \in XVal(t)\}$ and previous credibilities $\{C_j(t-1) | j \in XVal(t)\}$.
             * Calculate the weighted mean $WMean_{k(t),m}$:
 
-                $$
-                \text{Numerator} = \sum_{j \in XVal(t)} S_{j,k(t),m} \cdot C_j(t-1)
-                $$
+                $ \text{Numerator} = \sum_{j \in XVal(t)} S_{j,k(t),m} \cdot C_j(t-1) $
 
-                $$ 
-                \text{Denominator} = \sum_{j \in XVal(t)} C_j(t-1) 
-                $$
+                $ \text{Denominator} = \sum_{j \in XVal(t)} C_j(t-1) $
 
-                $$ 
-                WMean_{k(t),m} = \frac{\text{Numerator}}{\max(\text{Denominator}, \epsilon)} 
-                $$
+                $ WMean_{k(t),m} = \frac{\text{Numerator}}{\max(\text{Denominator}, \epsilon)} $
 
                 (where $\epsilon$ is a small positive constant, e.g., $10^{-9}$).
 
@@ -87,30 +81,20 @@ This document outlines the mathematical framework describing the operation of th
         * Retrieve the original scores $S_{O(t),k(t),m}$ for test $k(t)$.
         * Calculate a discrepancy measure, $\Delta_{O(t), k(t)}$. Example: Average Absolute Difference:
 
-            $$ 
-            \Delta_{O(t), k(t)} = \frac{1}{M} \sum_{m \in \mathcal{M}} | S_{O(t),k(t),m} - WMean_{k(t),m} | 
-            $$
+            $ \Delta_{O(t), k(t)} = \frac{1}{M} \sum_{m \in \mathcal{M}} | S_{O(t),k(t),m} - WMean_{k(t),m} | $
 
     * **Step 2.6: Update Credibility Scores**
         * Define a credibility update function $f(\Delta, C_{old})$. Example using learning rate $L$ and penalty factor $P$:
 
-            $$ 
-            \text{Change} = L \cdot (1 - P \cdot \Delta) 
-            $$
+            $ \text{Change} = L \cdot (1 - P \cdot \Delta) $
 
-            $$ 
-            C'_{O(t)}(t) = C_{O(t)}(t-1) + \text{Change} 
-            $$
+            $ C'_{O(t)}(t) = C_{O(t)}(t-1) + \text{Change} $
 
-            $$ 
-            C_{O(t)}(t) = \text{clamp}( C'_{O(t)}(t), C_{min}, C_{max} ) 
-            $$
+            $ C_{O(t)}(t) = \text{clamp}( C'_{O(t)}(t), C_{min}, C_{max} ) $
 
         * For all other validators $j \neq O(t)$:
 
-            $$
-            C_j(t) = C_j(t-1) 
-            $$
+            $ C_j(t) = C_j(t-1) $
 
     * **Step 2.7: Recalculate Final Model Scores (Retroactive)**
         * For each model $m \in \mathcal{M}$:
@@ -122,9 +106,7 @@ This document outlines the mathematical framework describing the operation of th
                 * $\text{Denom}_m = \text{Denom}_m + C_{i_s}(t)$
             * Calculate the final score for model $m$ at step $t$:
 
-                $$ 
-                F_m(t) = \frac{\text{Num}_m}{\max(\text{Denom}_m, \epsilon)} 
-                $$
+                $ F_m(t) = \frac{\text{Num}_m}{\max(\text{Denom}_m, \epsilon)} $
 
 **3. Goal Demonstration**
 
