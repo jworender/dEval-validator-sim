@@ -1,6 +1,6 @@
 # dEval-validator-sim
 
-This program simulates a decentralized evaluation system for generative AI models. It demonstrates how a consensus mechanism can be used to mitigate the impact of biased or malicious validators.
+We propose a decentralized evaluation framework for generative AI models leveraging a validator-based approach. Each validator independently formulates evaluation prompts (original submissions) and executes them across a set of generative models, submitting their recorded performance metrics to a shared database. Subsequently, other validators cross-validate these prompts by independently running identical evaluations, with the outcomes used to corroborate or dispute the original results. Evaluations are aggregated through credibility-weighted averages, dynamically adjusting validators' credibility scores based on consistency between original submissions and corresponding cross-validation outcomes. A change in any validator’s credibility score retroactively influences all previous evaluations involving that validator, ensuring continuous refinement of model assessment accuracy.
 
 ## Mathematical Framework
 
